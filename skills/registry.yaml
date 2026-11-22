@@ -1,0 +1,24 @@
+version: 1
+note: "Каталог стартовых навыков; полные исходные SKILL.md требуют переноса и сверки."
+skills:
+  neurotext-ru: {category: writing, assigned_to: [razvedchik, issledovatel, menedzher, marketolog]}
+  diet-check: {category: quality, assigned_to: [rp, razrabotchik, testirovshchik, bezopasnik, devops]}
+  ctx-audit: {category: management, assigned_to: [rp]}
+  claudemd-review: {category: management, assigned_to: [rp]}
+  planning-and-task-breakdown: {category: planning, assigned_to: [analitik, arhitektor]}
+  constraint-driven-development: {category: engineering, assigned_to: [arhitektor]}
+  incremental-implementation: {category: engineering, assigned_to: [razrabotchik, auditor]}
+  code-simplification: {category: engineering, assigned_to: [razrabotchik, auditor]}
+  pozitsionirovanie: {category: marketing, assigned_to: [marketolog, pharma-strateg]}
+  offer: {category: marketing, assigned_to: [marketolog, pharma-strateg]}
+  dom-soobshcheniy: {category: marketing, assigned_to: [marketolog, pharma-strateg]}
+  voronka: {category: sales, assigned_to: [marketolog, pharma-strateg]}
+  istoriya-brenda: {category: marketing, assigned_to: [marketolog]}
+  prodayushchaya-stranitsa: {category: marketing, assigned_to: [dizayner, marketolog]}
+  site-brief: {category: design, assigned_to: [dizayner, marketolog]}
+  skripty-prodazh: {category: sales, assigned_to: [menedzher]}
+  dizayn-interfeysa: {category: design, assigned_to: [dizayner]}
+  model-ugroz: {category: security, assigned_to: [auditor]}
+  security-audit: {category: security, assigned_to: [auditor]}
+  supply-chain-risk: {category: security, assigned_to: [auditor]}
+  sila-testov: {category: testing, assigned_to: [auditor]}
