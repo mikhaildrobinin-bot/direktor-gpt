@@ -1,0 +1,17 @@
+version: 1
+agents:
+  director: {name: Директор, description: Управляет портфелем и делегирует РП, prompt: agents/prompts/director.md}
+  rp: {name: Руководитель проекта, description: Планирует задачи и вызывает исполнителей, prompt: agents/prompts/rp.md}
+  razvedchik: {name: Разведчик, description: Исследует потенциальных клиентов по публичным данным, prompt: agents/prompts/razvedchik.md}
+  issledovatel: {name: Исследователь, description: Исследует бизнес и его цифровое присутствие, prompt: agents/prompts/issledovatel.md}
+  menedzher: {name: Менеджер, description: Готовит продажи и деловую переписку, prompt: agents/prompts/menedzher.md}
+  analitik: {name: Аналитик, description: Формирует требования и критерии приёмки, prompt: agents/prompts/analitik.md}
+  arhitektor: {name: Архитектор, description: Проектирует архитектуру, prompt: agents/prompts/arhitektor.md}
+  dizayner: {name: Дизайнер, description: Проектирует интерфейсы, prompt: agents/prompts/dizayner.md}
+  razrabotchik: {name: Разработчик, description: Реализует код по согласованным требованиям, prompt: agents/prompts/razrabotchik.md}
+  devops: {name: DevOps, description: Настраивает CI/CD и эксплуатацию, prompt: agents/prompts/devops.md}
+  marketolog: {name: Маркетолог, description: Разрабатывает позиционирование и запуск, prompt: agents/prompts/marketolog.md}
+  testirovshchik: {name: Тестировщик, description: Проверяет критерии приёмки, prompt: agents/prompts/testirovshchik.md}
+  bezopasnik: {name: Безопасник, description: Проверяет безопасность перед выпуском, prompt: agents/prompts/bezopasnik.md}
+  auditor: {name: Аудитор, description: Проводит независимый аудит, prompt: agents/prompts/auditor.md}
+  pharma-strateg: {name: Фарма-стратег, description: Анализирует фармацевтический бизнес, prompt: agents/prompts/pharma-strateg.md}
