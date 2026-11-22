@@ -9,7 +9,7 @@ REGISTRY_PATH = ROOT / "agents" / "registry.yaml"
 # Full original prompts are the primary role instructions. The compact rules and
 # long playbooks are appended as role context when present.
 CONTEXT = {
-    "director": ("director", None),
+    "director": (None, None),
     "rp": ("rp", "rp"),
     "razvedchik": ("razvedchik", "razvedchik"),
     "issledovatel": ("issledovatel", "issledovatel"),
@@ -40,8 +40,6 @@ def _instructions(agent_id: str, prompt_path: str) -> str:
         sections.append(_read_optional(ROOT / "agents/source/rules" / f"{rule_key}.md"))
     if manual_key:
         sections.append(_read_optional(ROOT / "agents/source/manuals" / f"{manual_key}.md"))
-    if agent_id == "pharma-strateg":
-        sections.append(_read_optional(ROOT / "agents/source/roles/pharma-strateg.md"))
     return "\\n\\n---\\n\\n".join(x for x in sections if x.strip())
 
 def build_team():
