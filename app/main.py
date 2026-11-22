@@ -1,6 +1,8 @@
 from contextlib import asynccontextmanager
 from uuid import uuid4
+from pathlib import Path
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 from sqlalchemy import select, func
 from agents import Runner
@@ -13,6 +15,10 @@ async def lifespan(app):
     if settings.openai_api_key: app.state.director, app.state.team=build_team()
     yield
 app=FastAPI(title="Директор OpenAI",version="0.1.0",lifespan=lifespan)
+@app.get("/", include_in_schema=False)
+def dashboard():
+    return FileResponse(Path(__file__).parent / "static" / "index.html")
+
 class TaskRequest(BaseModel): instruction: str=Field(min_length=5,max_length=12000)
 @app.get("/health")
 def health(): return {"status":"ok","openai_configured":bool(settings.openai_api_key),"model":settings.openai_model}
