@@ -25,7 +25,7 @@ cp .env.example .env
 uvicorn app.main:app --reload
 ```
 
-Swagger: http://localhost:8000/docs
+Панель управления (на русском): http://127.0.0.1:8000/\n\nSwagger: http://localhost:8000/docs
 
 ## Docker
 ```bash
@@ -34,7 +34,7 @@ cp .env.example .env
 docker compose up --build
 ```
 
-## API
+## Обновление на Mac\nПосле изменений на GitHub остановите сервер сочетанием Ctrl+C и выполните из папки проекта:\n```bash\ngit pull\nbash scripts/run_macos.sh\n```\nОткройте http://127.0.0.1:8000/ — там можно отправлять задачи и читать ответы.\n\n## API
 - `GET /health` — состояние конфигурации.
 - `GET /agents` — список ролей.
 - `GET /tasks` — последние задачи.
