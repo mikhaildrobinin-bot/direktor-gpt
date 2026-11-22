@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Директор — управление агентами</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e8eef7;background:#0b1220;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0}main{max-width:1100px;margin:auto;padding:32px 20px 80px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:30px;flex-wrap:wrap}
+h1{font-size:clamp(28px,5vw,42px);margin:0}h2{font-size:20px;margin:0 0 16px}p{color:#aebbd0}
+.panel{background:#151f30;border:1px solid #30405a;border-radius:18px;padding:24px;margin-bottom:22px}
+textarea{width:100%;min-height:150px;resize:vertical;border-radius:12px;border:1px solid #4a5970;background:#0c1625;color:white;padding:15px;font:inherit;line-height:1.5}
+button{border:0;border-radius:11px;background:#71d4b0;color:#09251d;font:inherit;font-weight:700;padding:12px 20px;cursor:pointer}
+button:disabled{opacity:.5;cursor:wait}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:14px;flex-wrap:wrap}
+small,.muted{color:#aebbd0}.status{display:inline-block;border-radius:100px;background:#24364c;padding:7px 12px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.agent{background:#0e1828;border:1px solid #30405a;border-radius:12px;padding:14px}
+.agent strong{display:block;margin-bottom:7px}.agent p{font-size:13px;line-height:1.45;margin:0}
+.task{border-top:1px solid #30405a;padding:17px 0}.task:first-child{border-top:0;padding-top:0}
+.task h3{font-size:15px;margin:0 0 8px;overflow-wrap:anywhere}.task pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0b1524;padding:14px;border-radius:10px;font:14px/1.55 inherit}
+.error{color:#ffaaa7}.success{color:#88e7bd}a{color:#a9caff}
+</style></head>
+<body><main><header><div><h1>Директор</h1><p>Команда ИИ-агентов · локальная панель</p></div><span class="status" id="connection">Проверяем подключение…</span></header>
+<section class="panel"><h2>Новая задача</h2><form id="task-form"><label for="instruction" class="muted">Опиши, что нужно сделать</label><textarea id="instruction" minlength="5" maxlength="12000" required placeholder="Например: составь план запуска проекта и распредели задачи между специалистами"></textarea><div class="toolbar"><button id="submit" type="submit">Запустить директора</button><small id="message" role="status" aria-live="polite">Задача выполняется через OpenAI API и может потребовать времени и оплаты.</small></div></form></section>
+<section class="panel"><div class="toolbar" style="margin-top:0"><h2>История задач</h2><button type="button" id="refresh">Обновить</button></div><div id="tasks"><p>Загружаем задачи…</p></div></section>
+<section class="panel"><h2>Команда агентов</h2><div id="agents" class="grid"><p>Загружаем список…</p></div></section>
+<p><small>Работает на этом компьютере. Не открывай доступ к серверу из интернета без авторизации. <a href="/docs">Технический API</a></small></p>
+</main><script>
+const byId=id=>document.getElementById(id);
+const make=(tag,text,className)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(className)el.className=className;return el};
+async function request(url,options){const r=await fetch(url,options);let data;try{data=await r.json()}catch{throw Error("Сервер вернул некорректный ответ")}if(!r.ok)throw Error(typeof data.detail==="string"?data.detail:"Ошибка сервера: "+r.status);return data}
+async function loadHealth(){try{const h=await request("/health");byId("connection").textContent=h.openai_configured?"OpenAI подключён":"Не задан API-ключ";byId("connection").className="status "+(h.openai_configured?"success":"error")}catch{byId("connection").textContent="Сервер недоступен";byId("connection").className="status error"}}
+async function loadAgents(){const root=byId("agents");try{const agents=await request("/agents");root.replaceChildren();for(const a of agents){const card=make("article",undefined,"agent");card.append(make("strong",a.name),make("p",a.description));root.append(card)}}catch(e){root.replaceChildren(make("p",e.message,"error"))}}
+async function loadTasks(){const root=byId("tasks");try{const tasks=await request("/tasks");root.replaceChildren();if(!tasks.length){root.append(make("p","Пока нет задач. Запусти первую!"));return}for(const t of tasks){const item=make("article",undefined,"task");item.append(make("h3",t.instruction));const status=make("small","Статус: "+t.status,t.status==="completed"?"success":t.status==="failed"?"error":"muted");item.append(status);if(t.result)item.append(make("pre",t.result));root.append(item)}}catch(e){root.replaceChildren(make("p",e.message,"error"))}}
+byId("refresh").addEventListener("click",loadTasks);
+byId("task-form").addEventListener("submit",async e=>{e.preventDefault();const btn=byId("submit"),msg=byId("message");btn.disabled=true;msg.textContent="Директор выполняет задачу. Не закрывай страницу…";msg.className="muted";try{await request("/tasks",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({instruction:byId("instruction").value.trim()})});msg.textContent="Готово! Результат добавлен в историю.";msg.className="success";byId("instruction").value=""}catch(err){msg.textContent=err.message;msg.className="error"}finally{btn.disabled=false;await loadTasks()}});
+loadHealth();loadAgents();loadTasks();
+</script></body></html>
