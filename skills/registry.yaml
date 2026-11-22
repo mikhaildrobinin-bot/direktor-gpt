@@ -1,24 +1,27 @@
-version: 1
-note: "Каталог стартовых навыков; полные исходные SKILL.md требуют переноса и сверки."
+version: 2
+source_audit:
+  repository: mikhaildrobinin-bot/direktor
+  result: "В дереве исходного репозитория не найдено файлов SKILL.md или отдельного каталога skills."
+  interpretation: "Ниже — предварительные функциональные модули, предложенные при проектировании. Они НЕ являются импортированными оригинальными навыками и требуют отдельной спецификации."
 skills:
-  neurotext-ru: {category: writing, assigned_to: [razvedchik, issledovatel, menedzher, marketolog]}
-  diet-check: {category: quality, assigned_to: [rp, razrabotchik, testirovshchik, bezopasnik, devops]}
-  ctx-audit: {category: management, assigned_to: [rp]}
-  claudemd-review: {category: management, assigned_to: [rp]}
-  planning-and-task-breakdown: {category: planning, assigned_to: [analitik, arhitektor]}
-  constraint-driven-development: {category: engineering, assigned_to: [arhitektor]}
-  incremental-implementation: {category: engineering, assigned_to: [razrabotchik, auditor]}
-  code-simplification: {category: engineering, assigned_to: [razrabotchik, auditor]}
-  pozitsionirovanie: {category: marketing, assigned_to: [marketolog, pharma-strateg]}
-  offer: {category: marketing, assigned_to: [marketolog, pharma-strateg]}
-  dom-soobshcheniy: {category: marketing, assigned_to: [marketolog, pharma-strateg]}
-  voronka: {category: sales, assigned_to: [marketolog, pharma-strateg]}
-  istoriya-brenda: {category: marketing, assigned_to: [marketolog]}
-  prodayushchaya-stranitsa: {category: marketing, assigned_to: [dizayner, marketolog]}
-  site-brief: {category: design, assigned_to: [dizayner, marketolog]}
-  skripty-prodazh: {category: sales, assigned_to: [menedzher]}
-  dizayn-interfeysa: {category: design, assigned_to: [dizayner]}
-  model-ugroz: {category: security, assigned_to: [auditor]}
-  security-audit: {category: security, assigned_to: [auditor]}
-  supply-chain-risk: {category: security, assigned_to: [auditor]}
-  sila-testov: {category: testing, assigned_to: [auditor]}
+  neurotext-ru: {category: writing, assigned_to: [razvedchik, issledovatel, menedzher, marketolog], status: proposed_not_source_verified}
+  diet-check: {category: quality, assigned_to: [rp, razrabotchik, testirovshchik, bezopasnik, devops], status: proposed_not_source_verified}
+  ctx-audit: {category: management, assigned_to: [rp], status: proposed_not_source_verified}
+  claudemd-review: {category: management, assigned_to: [rp], status: proposed_not_source_verified}
+  planning-and-task-breakdown: {category: planning, assigned_to: [analitik, arhitektor], status: proposed_not_source_verified}
+  constraint-driven-development: {category: engineering, assigned_to: [arhitektor], status: proposed_not_source_verified}
+  incremental-implementation: {category: engineering, assigned_to: [razrabotchik, auditor], status: proposed_not_source_verified}
+  code-simplification: {category: engineering, assigned_to: [razrabotchik, auditor], status: proposed_not_source_verified}
+  pozitsionirovanie: {category: marketing, assigned_to: [marketolog, pharma-strateg], status: proposed_not_source_verified}
+  offer: {category: marketing, assigned_to: [marketolog, pharma-strateg], status: proposed_not_source_verified}
+  dom-soobshcheniy: {category: marketing, assigned_to: [marketolog, pharma-strateg], status: proposed_not_source_verified}
+  voronka: {category: sales, assigned_to: [marketolog, pharma-strateg], status: proposed_not_source_verified}
+  istoriya-brenda: {category: marketing, assigned_to: [marketolog], status: proposed_not_source_verified}
+  prodayushchaya-stranitsa: {category: marketing, assigned_to: [dizayner, marketolog], status: proposed_not_source_verified}
+  site-brief: {category: design, assigned_to: [dizayner, marketolog], status: proposed_not_source_verified}
+  skripty-prodazh: {category: sales, assigned_to: [menedzher], status: proposed_not_source_verified}
+  dizayn-interfeysa: {category: design, assigned_to: [dizayner], status: proposed_not_source_verified}
+  model-ugroz: {category: security, assigned_to: [auditor], status: proposed_not_source_verified}
+  security-audit: {category: security, assigned_to: [auditor], status: proposed_not_source_verified}
+  supply-chain-risk: {category: security, assigned_to: [auditor], status: proposed_not_source_verified}
+  sila-testov: {category: testing, assigned_to: [auditor], status: proposed_not_source_verified}
