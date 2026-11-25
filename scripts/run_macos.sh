@@ -21,4 +21,4 @@ if ! grep -Eq '^OPENAI_API_KEY=.+$' .env; then
 fi
 
 source .venv/bin/activate
-exec uvicorn app.main:app --host 127.0.0.1 --port 8000
+exec uvicorn app.main:app --env-file .env --host 127.0.0.1 --port 8000
