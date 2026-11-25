@@ -1,6 +1,6 @@
 from pathlib import Path
 import yaml
-from agents import Agent
+from agents import Agent, set_default_openai_key
 from app.config import settings
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -45,6 +45,7 @@ def _instructions(agent_id: str, prompt_path: str) -> str:
 def build_team():
     if not settings.openai_api_key:
         raise RuntimeError("OPENAI_API_KEY не задан. Заполните .env перед запуском.")
+    set_default_openai_key(settings.openai_api_key.strip())
     registry = load_registry()
     specialists = {}
     for agent_id, spec in registry["agents"].items():
